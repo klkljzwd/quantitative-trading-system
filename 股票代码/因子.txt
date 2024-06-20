@@ -1,0 +1,11 @@
+#中国股票市场收益率的可预测性研究_蒋志强
+账面市值比BM——t-1期每股净资产比当前股价
+每股收益率价格比EP——t-1年每股收益率与当前股价对数差
+通货膨胀率INF——t-1期的CPI
+
+#Time-series and cross-sectional stock return forecasting: New machine learning methods
+工业品出厂价格指数PPI——t-1期的PPI
+MA112——data['Index'] >= data['Index'].rolling(window=12).mean()
+
+#其余
+净资产收益率ROE
