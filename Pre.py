@@ -7,6 +7,10 @@ with open("pre_result.pkl","rb") as f:
 
 date_list = pre_result[0]['date'].values
 r_list = []
+r_list2 = []
+r_list3 = []
+r_list4 = []
+r_list5 = []
 sum_r1 = 1
 sum_list1 =[1]
 sum_r2 = 1
@@ -53,10 +57,10 @@ for i in range(len(date_list)):
     current_pd['real'] = pd.Series(real_list)
     current_pd['pre'] = pd.Series(pre_list)
     #按照pre排序
-    current_pd.sort_values(by='pre',inplace=True)
+    current_pd.sort_values(by='pre',inplace=True,ascending=False)
     
     
-    r1,r2,r3,r4,r5 = get_r(current_pd)
+    r1,r2,r3,r4,r5 = get_r(current_pd)         
     r_whole = np.sum(current_pd.loc[:,'real'])/len(current_pd)
     sum_r_whole*=(1+r_whole)
     sum_r1*=(1+r1)
@@ -71,8 +75,16 @@ for i in range(len(date_list)):
     sum_list5.append(sum_r5)
     sum_r_whole_list.append(sum_r_whole)
     r_list.append(r1)
+    r_list2.append(r2)
+    r_list3.append(r3)
+    r_list4.append(r4)
+    r_list5.append(r5)
 
 print(np.mean(r_list)/np.std(r_list)*np.sqrt(12))
+print(np.mean(r_list2)/np.std(r_list2)*np.sqrt(12))
+print(np.mean(r_list3)/np.std(r_list3)*np.sqrt(12))
+print(np.mean(r_list4)/np.std(r_list4)*np.sqrt(12))
+print(np.mean(r_list5)/np.std(r_list5)*np.sqrt(12))
 
 plt.plot(date_list,sum_list1[:-1],label="1")
 plt.plot(date_list,sum_list2[:-1],label="2")
