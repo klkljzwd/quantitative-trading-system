@@ -39,7 +39,7 @@ class ReadData:
             stock['MBI'] = (stock['price']-stock['MA'])/stock['MA']
             if len(stock)<150:
                 continue
-            stock = stock[['code','name','date','EP','BM','exrtn','size','MA112','roe','cpi','ppi','turn','exrtn1']]
+            stock = stock[['code','name','date','EP','BM','exrtn','size','MA112','roe','cpi','ppi','turn','MBI','exrtn1']]
             stock.sort_values(by='date',inplace=True)
             stock.dropna(inplace=True)
             stock_list.append(stock)
