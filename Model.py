@@ -5,8 +5,6 @@ from sklearn.ensemble import HistGradientBoostingRegressor,HistGradientBoostingC
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.linear_model import LinearRegression,Ridge,OrthogonalMatchingPursuit,RidgeCV
 from sklearn.neighbors import KNeighborsRegressor
-from xgboost import XGBRegressor,XGBClassifier
-from lightgbm import LGBMRegressor
 from sklearn.svm import SVR
 from sklearn.neural_network import MLPRegressor
 class Model:
