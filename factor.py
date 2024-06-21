@@ -5,13 +5,13 @@ import pickle
 
 with open("stocks.pkl","rb") as f:
     s = pickle.load(f)
-
+print(s[0])
 data = pd.DataFrame()
 for i in s:
     data=pd.concat((data,i))
 dates=np.unique(data['date'])
 
-factors=['EP', 'BM', 'exrtn', 'size', 'MA112', 'roe', 'turn', 'MBI']
+factors=['pe','pb','exrtn','size','MA112','turn','MBI','MOM3','REV12']
 
 for factor in factors:
     Q=np.zeros((1,5))
