@@ -35,13 +35,17 @@ class ReadData:
             stock['exrtn1'] = stock['rtnn1'] - stock['rf']
             stock['size'] = np.log(stock['price']*stock['amount'])
             stock['MA'] = stock['price'].rolling(window=12).mean()
+            stock['TMA'] = stock['MA'].rolling(window=12).mean()
+            stock['MBI']=(stock['price']-stock['MA'])/stock['MA']
+            stock['SK']=(stock['price']-stock['price'].rolling(window=12).min())/(stock['price'].rolling(window=12).max()-stock['price'].rolling(window=12).min())
+            stock['SD']=stock['S_K'].rolling(window=3).mean()
+            stock['PSY']=(data['exrtn']>0).rolling(window=12).mean()
             stock['MA112'] = stock['price']>stock['price'].rolling(window=12).mean()
-            stock['MBI'] = (stock['price']-stock['MA'])/stock['MA']
             stock['MOM3'] = stock['rtn'].rolling(window=3).sum()
             stock['REV12'] = stock['rtn'].shift(12)
             if len(stock)<150:
                 continue
-            stock = stock[['code','name','date','pe','pb','exrtn','size','cpi','ppi','turn','MBI','MA112','MOM3','REV12','exrtn1']]
+            stock = stock[['code','name','date','pe','pb','exrtn','size','MA','TMA','MBI','SK','SD','PSY','cpi','ppi','turn','MA112','MOM3','REV12','exrtn1']]
             stock.sort_values(by='date',inplace=True)
             stock.dropna(inplace=True)
             stock_list.append(stock)
