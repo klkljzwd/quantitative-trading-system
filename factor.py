@@ -24,7 +24,7 @@ for factor in factors:
         for i in range(5):
             group=tmp1.loc[indices[i]:indices[i+1]]['code']
             ans=pd.merge(left=group,right=tmp2,on='code',how='inner')
-            Q_tmp[0][i]=ans['exrtn'].mean()
+            Q_tmp[0][i]=ans['EXRET'].mean()
         Q=np.concatenate((Q,Q_tmp),axis=0)
     Q=Q[1:,:]
     Q_ans=Q.mean(axis=0)*100

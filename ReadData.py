@@ -24,28 +24,30 @@ class ReadData:
             stock = data[data['code']==code]
             stock['date'] = pd.to_datetime(stock['date'])
             stock['date'] = stock['date'].dt.strftime("%Y%m")
-            #stock['rtn'] = np.log(stock['price']) - np.log(stock['price'].shift(1))
             stock['rtnn1'] = stock['rtn'].shift(-1)
             stock = pd.merge(left=stock,right=self.cpi,on='date',how='inner')
             stock = pd.merge(left=stock,right=self.ppi,on='date',how='inner')
             #计算因子
-            stock['EP'] = stock['eps']/stock['price']
-            stock['BM'] = stock['naps']/stock['price']
-            stock['exrtn'] = stock['rtn'] - stock['rf']
-            stock['exrtn1'] = stock['rtnn1'] - stock['rf']
-            stock['size'] = np.log(stock['price']*stock['amount'])
-            stock['MA'] = stock['price'].rolling(window=12).mean()
-            stock['TMA'] = stock['MA'].rolling(window=12).mean()
-            stock['MBI']=(stock['price']-stock['MA'])/stock['MA']
+            stock['VOL'] = stock['amount']
+            stock['PE'] = stock['pe']
+            stock['TURN'] = stock['turn']
+            stock['PB'] = stock['pb']
+            stock['EPS'] =stock['eps']
+            stock['ROE'] = stock['roe']
+            stock['NAPS'] = stock['naps']
+            stock['EXRET']  =stock['rtn']-stock['rf']
+            stock['MA'] = stock['rtn'].rolling(window=3).sum()
+            stock['TMA'] = stock['MA'].rolling(window=3).mean()
+            stock['MBI']=(stock['price']-stock['MA'])/stock['MA'] 
             stock['SK']=(stock['price']-stock['price'].rolling(window=12).min())/(stock['price'].rolling(window=12).max()-stock['price'].rolling(window=12).min())
             stock['SD']=stock['SK'].rolling(window=3).mean()
-            stock['PSY']=(stock['exrtn']>0).rolling(window=12).mean()
-            stock['MA112'] = stock['price']>stock['price'].rolling(window=12).mean()
-            stock['MOM3'] = stock['rtn'].rolling(window=3).sum()
-            stock['REV12'] = stock['rtn'].shift(12)
+            stock['PSY']=(stock['rtn']>0).rolling(window=12).mean()
+            stock['CPI'] = stock['cpi']
+            stock['PPI'] = stock['ppi']
+            stock['exrtn1'] = stock['rtnn1'] - stock['rf']
             if len(stock)<150:
                 continue
-            stock = stock[['code','name','date','pe','pb','exrtn','size','MA','TMA','MBI','SK','SD','PSY','cpi','ppi','turn','MA112','MOM3','REV12','exrtn1']]
+            stock = stock[['code','name','date','VOL','PE','TURN','PB','EPS','ROE','NAPS','EXRET','MA','TMA','MBI','SK','SD','PSY','CPI','PPI','exrtn1']]
             stock.sort_values(by='date',inplace=True)
             stock.dropna(inplace=True)
             stock_list.append(stock)
