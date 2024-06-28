@@ -23,7 +23,6 @@ for i in range(len(stock_list)):
         print(i)
     except:
         print("训练数据不足")
-    
 with open("pre_result.pkl","wb") as f:
     pickle.dump(pre_result,f)
 
