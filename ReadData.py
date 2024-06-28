@@ -28,7 +28,7 @@ class ReadData:
             stock = pd.merge(left=stock,right=self.cpi,on='date',how='inner')
             stock = pd.merge(left=stock,right=self.ppi,on='date',how='inner')
             #计算因子
-            stock['VOL'] = stock['trade']
+            stock['VOL'] = stock['amount']
             stock['PE'] = stock['pe']
             stock['TURN'] = stock['turn']
             stock['PB'] = stock['pb']
@@ -45,10 +45,10 @@ class ReadData:
             stock['CPI'] = stock['cpi']
             stock['PPI'] = stock['ppi']
             stock['exrtn1'] = stock['rtnn1'] - stock['rf']
-            stock['size'] = stock['price']*stock['amount']
+            stock['SIZE'] = stock['price']*stock['amount']
             if len(stock)<150:
                 continue
-            stock = stock[['code','name','date','size','VOL','PE','TURN','PB','EPS','ROE','NAPS','EXRET','MA','TMA','MBI','SK','SD','PSY','CPI','PPI','exrtn1']]
+            stock = stock[['code','name','date','SIZE','PE','TURN','EXRET','MA','TMA','SK','SD','CPI','PPI','exrtn1']]
             stock.sort_values(by='date',inplace=True)
             stock.dropna(inplace=True)
             stock_list.append(stock)

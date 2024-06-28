@@ -6,9 +6,9 @@ import pickle
 from ClassifyStock import *
 #stock_list = get_all()
 #按照市值
-stock_list = get_big()
-# stock_list = get_mid()
-# stock_list = get_small()
+#stock_list = get_big()
+#stock_list = get_mid()
+stock_list = get_small()
 
 print(len(stock_list))
 print(stock_list[0])
@@ -17,7 +17,7 @@ sum = 0
 pre_result = []
 for i in range(len(stock_list)):
     try:
-        pre,real_data = model.gradientBoosting(stock_list[i],'202101')
+        pre,real_data = model.gradientBoosting(stock_list[i],'201301')
         pre_data = pd.DataFrame()
         pre_data['code'] = real_data['code']
         pre_data['date'] = real_data['date']

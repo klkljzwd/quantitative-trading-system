@@ -7,7 +7,7 @@ with open("stocks.pkl","rb") as f:
 avg_size_dict= {}
 for s in stocks:
     #计算平均市值
-    avg_size = np.mean(s['size'])
+    avg_size = np.mean(s['SIZE'])
     avg_size_dict[avg_size] = s
 avg_size_dict_item = avg_size_dict.items()
 avg_size_dict_item = sorted(avg_size_dict_item,key=lambda x:x[0],reverse=True)
