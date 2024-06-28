@@ -45,7 +45,7 @@ class ReadData:
             stock['CPI'] = stock['cpi']
             stock['PPI'] = stock['ppi']
             stock['exrtn1'] = stock['rtnn1'] - stock['rf']
-            stock['size'] = stock['price']*stock['']
+            stock['size'] = stock['price']*stock['amount']
             if len(stock)<150:
                 continue
             stock = stock[['code','name','date','size','VOL','PE','TURN','PB','EPS','ROE','NAPS','EXRET','MA','TMA','MBI','SK','SD','PSY','CPI','PPI','exrtn1']]

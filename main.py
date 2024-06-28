@@ -3,9 +3,13 @@ import numpy as np
 from ReadData import * 
 from Model import *
 import pickle
+from ClassifyStock import *
+#stock_list = get_all()
+#按照市值
+stock_list = get_big()
+# stock_list = get_mid()
+# stock_list = get_small()
 
-with open("stocks.pkl","rb") as f:
-    stock_list = pickle.load(f)
 print(len(stock_list))
 print(stock_list[0])
 model = Model()
