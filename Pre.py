@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
+plt.rc
 with open("pre_result.pkl","rb") as f:
     pre_result = pickle.load(f)
 
@@ -86,13 +87,16 @@ print(np.mean(r_list3)/np.std(r_list3)*np.sqrt(12))
 print(np.mean(r_list4)/np.std(r_list4)*np.sqrt(12))
 print(np.mean(r_list5)/np.std(r_list5)*np.sqrt(12))
 
-plt.plot(date_list,sum_list1[:-1],label="1")
-plt.plot(date_list,sum_list2[:-1],label="2")
-plt.plot(date_list,sum_list3[:-1],label="3")
-plt.plot(date_list,sum_list4[:-1],label="4")
-plt.plot(date_list,sum_list5[:-1],label="5")
+plt.plot(date_list,sum_list1[:-1],label=r"$Q_1(MAX)$")
+plt.plot(date_list,sum_list2[:-1],label=r"$Q_2$")
+plt.plot(date_list,sum_list3[:-1],label=r"$Q_3$")
+plt.plot(date_list,sum_list4[:-1],label=r"$Q_4$")
+plt.plot(date_list,sum_list5[:-1],label=r"$Q_5(MIN)$")
 plt.plot(date_list,sum_r_whole_list[:-1],label="whole")
+plt.title("10 Years Result(GBRT)")
+plt.grid()
 plt.xticks(date_list[::10])
-plt.legend()
+plt.legend(loc='upper left', prop={'size': 10})
+
 plt.show()
 

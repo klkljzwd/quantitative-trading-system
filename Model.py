@@ -18,7 +18,7 @@ class Model:
             raise ValueError("不合法")
         test_data = stock[stock['date']>=date].iloc[:,3:-1].values
         real_data = stock[stock['date']>=date][['code','date','exrtn1']]
-        model = Ridge()
+        model = HistGradientBoostingRegressor()
         fitted_model = model.fit(train_data,train_label)
         pre = fitted_model.predict(test_data)
         return pre,real_data

@@ -17,7 +17,7 @@ sum = 0
 pre_result = []
 for i in range(len(stock_list)):
     try:
-        pre,real_data = model.gradientBoosting(stock_list[i],'201301')
+        pre,real_data = model.gradientBoosting(stock_list[i],'201403')
         pre_data = pd.DataFrame()
         pre_data['code'] = real_data['code']
         pre_data['date'] = real_data['date']
