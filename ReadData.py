@@ -38,8 +38,8 @@ class ReadData:
             stock['TMA'] = stock['MA'].rolling(window=12).mean()
             stock['MBI']=(stock['price']-stock['MA'])/stock['MA']
             stock['SK']=(stock['price']-stock['price'].rolling(window=12).min())/(stock['price'].rolling(window=12).max()-stock['price'].rolling(window=12).min())
-            stock['SD']=stock['S_K'].rolling(window=3).mean()
-            stock['PSY']=(data['exrtn']>0).rolling(window=12).mean()
+            stock['SD']=stock['SK'].rolling(window=3).mean()
+            stock['PSY']=(stock['exrtn']>0).rolling(window=12).mean()
             stock['MA112'] = stock['price']>stock['price'].rolling(window=12).mean()
             stock['MOM3'] = stock['rtn'].rolling(window=3).sum()
             stock['REV12'] = stock['rtn'].shift(12)
