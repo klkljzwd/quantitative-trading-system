@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.ensemble import HistGradientBoostingRegressor,HistGradientBoostingClassifier
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.linear_model import LinearRegression,Ridge,OrthogonalMatchingPursuit,RidgeCV,BayesianRidge
+from sklearn.linear_model import LinearRegression,Ridge,OrthogonalMatchingPursuit,RidgeCV,BayesianRidge,ElasticNet
 from catboost import CatBoostRegressor
 from sklearn.neighbors import KNeighborsRegressor
 class Model:
@@ -18,7 +18,7 @@ class Model:
             raise ValueError("不合法")
         test_data = stock[stock['date']>=date].iloc[:,3:-1].values
         real_data = stock[stock['date']>=date][['code','date','exrtn1']]
-        model = HistGradientBoostingRegressor()
+        model = ElasticNet()
         fitted_model = model.fit(train_data,train_label)
         pre = fitted_model.predict(test_data)
         return pre,real_data
